@@ -51,7 +51,7 @@ class calc:
                 "l": [False, False, False, True, True, True, False, False]
             },
             "implst": [["A", "B", "C", "D", "E", "F", "G", "DP"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]],
-            "onscreen": "hell0"
+            "onscreen": ""
 
         }
         self.run = True  # means calculator programm is working
@@ -97,20 +97,27 @@ class calc:
         '''Calculates power of number'''
         a = float(self.info["onscreen"])
         self.delete()
-        self.info["onscreen"] = str(round(a**n, 2))
+        try:
+            self.info["onscreen"] = str(round(a**n, 2))
+        except OverflowError:#error handling for overflow
+            self.info["onscreen"] ="error"
         self.write()
 
     def fact(self):
         '''Calculates the  factorial'''
-        if(self.info["onscreen"] == ""):  # if no number is typed the value is taken as 0
-            a = 0
+        if("." in self.info["onscreen"]):
+            self.delete()  # clearing the display
+            self.info["onscreen"]="error"
         else:
-            a = int(round(float(self.info["onscreen"])))
-        self.delete()  # clearing the display
-        fact = 1
-        for i in range(1, a+1):
-            fact *= i
-        self.info["onscreen"] = str(fact)
+            if(self.info["onscreen"] == ""):  # if no number is typed the value is taken as 0
+                a = 0
+            else:
+                a = int(round(float(self.info["onscreen"])))
+            self.delete()  # clearing the display
+            fact = 1
+            for i in range(1, a+1):
+                fact *= i
+            self.info["onscreen"] = str(fact)
         self.write()  # calling the write function
 
     def TurnOn(self, name, n=0):
@@ -166,7 +173,10 @@ class calc:
         else:
             self.n += self.info["onscreen"]
             self.delete()
-            self.info["onscreen"] = str(eval(self.n))
+            try:
+                self.info["onscreen"] = str(eval(self.n))
+            except ZeroDivisionError:
+                self.info["onscreen"] = "error"
             self.n = ""
             self.write()
 
@@ -273,6 +283,9 @@ while inst.run:
                 inst.write()
             elif event.unicode == "9":
                 inst.info["onscreen"] += "9"
+                inst.write()
+            elif event.unicode == ".":
+                inst.info["onscreen"] += "."
                 inst.write()
             elif event.unicode == "+":
                 inst.store("+")
