@@ -1,0 +1,16 @@
+A CALCULATOR WITH SEVEN SEGMENT DISPLAY USING PYTHON
+_____________
+|DESCRIPTION|
+-------------
+This application performs basic arthemetic operations along with some intermediate level unary operations.
+All this is accomplished along with a GUI and a working Seven Segment display.
+
+I have used The Pygame module, and basic object oriented design.
+
+In this project i have learned basic object oriented design.
+________________________________
+|IF YOU WANT TO RUN THE PROGRAM|
+--------------------------------
+If you want to runt his file make sure you have Python 3.10.1, with pygame installed. Also, make sure the name of the image assets are named as i have named them.
+
+FEEL FREE TO USE THIS CODE IN ANY WAY YOU DESIRE AND ANY CRITIQUES ARE WELCOMED
