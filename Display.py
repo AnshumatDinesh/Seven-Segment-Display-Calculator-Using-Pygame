@@ -60,7 +60,7 @@ class calc:
         self.screen.blit(self.info["Sprites"]["bg"],
                          (0, 0))  # placing the background
         self.n = ""
-        self.write(False)
+        self.write()
         pygame.display.update()
 
     def delete(self):
